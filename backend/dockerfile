@@ -1,20 +1,7 @@
-# 1️⃣ Use lightweight Node image
 FROM node:20-alpine
-
-# 2️⃣ Set working directory inside container
 WORKDIR /app
-
-# 3️⃣ Copy only package files first (Docker cache optimization)
 COPY package*.json ./
-
-# 4️⃣ Install only production dependencies
 RUN npm install --omit=dev
-
-# 5️⃣ Copy backend source code
 COPY . .
-
-# 6️⃣ Expose backend port
 EXPOSE 5000
-
-# 7️⃣ Start backend
 CMD ["node", "server.js"]
